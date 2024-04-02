@@ -18,6 +18,7 @@
 		3A100FDE2BBB62080057D3AD /* PhotoramaUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A100FDD2BBB62080057D3AD /* PhotoramaUITestsLaunchTests.swift */; };
 		3A100FEB2BBB676F0057D3AD /* FlickrAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A100FEA2BBB676F0057D3AD /* FlickrAPI.swift */; };
 		3A100FED2BBB7F2D0057D3AD /* PhotoStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A100FEC2BBB7F2D0057D3AD /* PhotoStore.swift */; };
+		3A100FEF2BBB91530057D3AD /* Photo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A100FEE2BBB91530057D3AD /* Photo.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +54,7 @@
 		3A100FDD2BBB62080057D3AD /* PhotoramaUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoramaUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		3A100FEA2BBB676F0057D3AD /* FlickrAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlickrAPI.swift; sourceTree = "<group>"; };
 		3A100FEC2BBB7F2D0057D3AD /* PhotoStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoStore.swift; sourceTree = "<group>"; };
+		3A100FEE2BBB91530057D3AD /* Photo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Photo.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -106,6 +108,7 @@
 				3A100FBA2BBB62070057D3AD /* AppDelegate.swift */,
 				3A100FBC2BBB62070057D3AD /* SceneDelegate.swift */,
 				3A100FBE2BBB62070057D3AD /* PhotosViewController.swift */,
+				3A100FEE2BBB91530057D3AD /* Photo.swift */,
 				3A100FEA2BBB676F0057D3AD /* FlickrAPI.swift */,
 				3A100FEC2BBB7F2D0057D3AD /* PhotoStore.swift */,
 				3A100FC02BBB62070057D3AD /* Main.storyboard */,
@@ -264,6 +267,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3A100FEF2BBB91530057D3AD /* Photo.swift in Sources */,
 				3A100FED2BBB7F2D0057D3AD /* PhotoStore.swift in Sources */,
 				3A100FBF2BBB62070057D3AD /* PhotosViewController.swift in Sources */,
 				3A100FBB2BBB62070057D3AD /* AppDelegate.swift in Sources */,

@@ -10,6 +10,26 @@ import Foundation
 enum EndPoint:String{
     case interestingPhotos = "flickr.interestingness.getList"
 }
+
+struct FlickrResponse: Codable{
+    let photosInfo: FlickrPhotosResponse
+    
+    //    mapping preferred property names to key names in JSON
+    enum CodingKeys: String, CodingKey{
+        case photosInfo =  "photos"
+    }
+    
+}
+
+struct FlickrPhotosResponse: Codable{
+    let photos: [Photo]
+    
+    //    mapping preferred property names to key names in JSON
+    enum CodingKeys: String, CodingKey{
+        case photos = "photo"
+    }
+}
+
 struct FlickrAPI{
     private static let baseURLString = "https://api.flickr.com/services/rest"
     private static let apiKey = "68f9d1eaa59efd2a971ffe6ff2737780"
