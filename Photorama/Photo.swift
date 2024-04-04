@@ -10,7 +10,7 @@ import Foundation
 class Photo: Codable{
     let photoID:String
     let title:String
-    let remoteURL: URL
+    let remoteURL: URL?
     let dateTaken: Date
     
 //    mapping preferred property names to key names in JSON
@@ -20,4 +20,6 @@ class Photo: Codable{
         case remoteURL = "url_z"
         case title
     }
+    
+   
 }
