@@ -29,7 +29,11 @@ class PhotoStore{
             (data,response,error) in
             
             let result = self.processPhotosRequest(data: data, error: error)
-            completion(result)
+            
+            OperationQueue.main.addOperation{
+                completion(result)
+            }
+           
         }
         task.resume()
     }
@@ -46,7 +50,11 @@ class PhotoStore{
             (data,response,error) in
             
             let result = self.processImageRequest(data: data, error: error)
-            completion(result)
+            
+            // forcing the completion handler to run on Main thread
+            OperationQueue.main.addOperation{
+                completion(result)
+            }
         }
         task.resume()
     }
