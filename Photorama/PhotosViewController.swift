@@ -7,41 +7,60 @@
 
 import UIKit
 
-class PhotosViewController: UIViewController {
-
-    @IBOutlet private var imageView:UIImageView!
+class PhotosViewController: UIViewController,UICollectionViewDelegate {
+    
+    
+    @IBOutlet  var collectionView:UICollectionView!
+    
     var store:PhotoStore!
-
+    
+    let photoDataStore=PhotoDataSource()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        collectionView.dataSource=photoDataStore
+        collectionView.delegate=self
+        
         store.fetchInterestingPhotos(){
-           (photosResult) in
+            (photosResult) in
             switch(photosResult){
             case let .success(photos):
                 print("Successfully found \(photos.count) photos")
-                if let firstPhoto = photos.first{
-                    self.updateImageView(for: firstPhoto)
-                }
+                self.photoDataStore.photos = photos
             case let .failure(error):
                 print("Error fetching Interesting photos \(error)")
-                
+                self.photoDataStore.photos.removeAll()
             }
-            
+            self.collectionView.reloadSections(IndexSet(integer: 0))
         }
         
     }
     
-    // fetch the image and display it on the image View
-    func updateImageView(for photo:Photo){
+    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        let photo = photoDataStore.photos[indexPath.row]
+        
+        // Download the image data, which could take some time
         store.fetchImage(for: photo){
-            (imageResult) in
-            switch(imageResult){
-            case let .success(image):
-                self.imageView.image = image
-            case let .failure(error):
-                print("Error Downloading Image \(error)")
+            (result) -> Void in
+            // the index path for the photo might have changed between the time the request started and finished, so find the most recent index path
+
+            
+            guard let photoIndex = self.photoDataStore.photos.firstIndex(of: photo),case let .success(image) = result else{
+                return
             }
+            
+            let photoItemIndex = IndexPath(item: photoIndex, section: 0)
+            
+            if let cell =  self.collectionView.cellForItem(at: photoItemIndex) as? PhotoCollectionViewCell{
+                cell.update(displayingImage: image)
+            }
+          
+            
         }
     }
+    
+    
+    
+    
 }
-
