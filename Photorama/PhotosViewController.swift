@@ -21,22 +21,27 @@ class PhotosViewController: UIViewController,UICollectionViewDelegate {
         
         collectionView.dataSource=photoDataStore
         collectionView.delegate=self
-        
+        updateDataSource()
         store.fetchInterestingPhotos(){
             (photosResult) in
-            switch(photosResult){
-            case let .success(photos):
-                print("Successfully found \(photos.count) photos")
-                self.photoDataStore.photos = photos
-            case let .failure(error):
-                print("Error fetching Interesting photos \(error)")
-                self.photoDataStore.photos.removeAll()
-            }
-            self.collectionView.reloadSections(IndexSet(integer: 0))
+            self.updateDataSource()
         }
         
     }
     
+    private func updateDataSource(){
+        store.fetchAllPhotos(completion: {(allPhotosResult) in
+            switch allPhotosResult{
+            case let .success(allPhotos):
+                self.photoDataStore.photos = allPhotos
+            case .failure:
+                self.photoDataStore.photos.removeAll()
+            }
+            
+            // reload collection view
+            self.collectionView.reloadSections(IndexSet(integer: 0))
+        })
+    }
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
         let photo = photoDataStore.photos[indexPath.row]
         

@@ -22,7 +22,7 @@ struct FlickrResponse: Codable{
 }
 
 struct FlickrPhotosResponse: Codable{
-    let photos: [Photo]
+    let photos: [FlickrPhoto]
     
     //    mapping preferred property names to key names in JSON
     enum CodingKeys: String, CodingKey{
@@ -66,7 +66,7 @@ struct FlickrAPI{
     }
     
     
-    static func photos(fromJSON data:Data) -> Result<[Photo],Error>{
+    static func photos(fromJSON data:Data) -> Result<[FlickrPhoto],Error>{
         do{
             let decoder = JSONDecoder()
             

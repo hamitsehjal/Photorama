@@ -7,8 +7,8 @@
 
 import Foundation
 
-class Photo: Codable,Equatable{
-    static func == (lhs: Photo, rhs: Photo) -> Bool {
+class FlickrPhoto: Codable,Equatable{
+    static func == (lhs: FlickrPhoto, rhs: FlickrPhoto) -> Bool {
         // Two photos are same if they have same PhotoID
         return lhs.photoID == rhs.photoID
     }
